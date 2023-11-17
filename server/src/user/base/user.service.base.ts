@@ -44,6 +44,7 @@ export class UserServiceBase {
 
       data: {
         ...args.data,
+        amit: await this.passwordService.hash(args.data.amit),
         password: await this.passwordService.hash(args.data.password),
       },
     });
@@ -56,6 +57,12 @@ export class UserServiceBase {
 
       data: {
         ...args.data,
+
+        amit:
+          args.data.amit &&
+          (await transformStringFieldUpdateInput(args.data.amit, (password) =>
+            this.passwordService.hash(password)
+          )),
 
         password:
           args.data.password &&
