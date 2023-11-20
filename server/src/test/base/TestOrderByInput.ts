@@ -11,77 +11,68 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
-import { IsJSONValue } from "@app/custom-validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
+import { IsOptional, IsEnum } from "class-validator";
+import { SortOrder } from "../../util/SortOrder";
 
-@InputType()
-class UserUpdateInput {
+@InputType({
+  isAbstract: true,
+  description: undefined,
+})
+class TestOrderByInput {
   @ApiProperty({
     required: false,
-    type: String,
+    enum: ["asc", "desc"],
   })
-  @IsString()
   @IsOptional()
-  @Field(() => String, {
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
     nullable: true,
   })
-  amit?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  firstName?: string | null;
+  createdAt?: SortOrder;
 
   @ApiProperty({
     required: false,
-    type: String,
+    enum: ["asc", "desc"],
   })
-  @IsString()
   @IsOptional()
-  @Field(() => String, {
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
     nullable: true,
   })
-  lastName?: string | null;
+  id?: SortOrder;
 
   @ApiProperty({
     required: false,
-    type: String,
+    enum: ["asc", "desc"],
   })
-  @IsString()
   @IsOptional()
-  @Field(() => String, {
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
     nullable: true,
   })
-  password?: string;
+  passward?: SortOrder;
 
   @ApiProperty({
     required: false,
+    enum: ["asc", "desc"],
   })
-  @IsJSONValue()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
     nullable: true,
   })
-  roles?: InputJsonValue;
+  updatedAt?: SortOrder;
 
   @ApiProperty({
     required: false,
-    type: String,
+    enum: ["asc", "desc"],
   })
-  @IsString()
   @IsOptional()
-  @Field(() => String, {
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
     nullable: true,
   })
-  username?: string;
+  username?: SortOrder;
 }
 
-export { UserUpdateInput as UserUpdateInput };
+export { TestOrderByInput as TestOrderByInput };

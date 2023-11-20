@@ -12,12 +12,9 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional } from "class-validator";
-import { IsJSONValue } from "@app/custom-validators";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
 
 @InputType()
-class UserCreateInput {
+class TestUpdateInput {
   @ApiProperty({
     required: false,
     type: String,
@@ -27,18 +24,7 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  amit?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  firstName?: string | null;
+  passward?: string | null;
 
   @ApiProperty({
     required: false,
@@ -49,30 +35,7 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  lastName?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  password!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsJSONValue()
-  @Field(() => GraphQLJSON)
-  roles!: InputJsonValue;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
+  username?: string | null;
 }
 
-export { UserCreateInput as UserCreateInput };
+export { TestUpdateInput as TestUpdateInput };
