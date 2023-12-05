@@ -26,17 +26,17 @@ export class TestServiceBase {
     return this.prisma.test.count(args);
   }
 
-  async findMany<T extends Prisma.TestFindManyArgs>(
+  async tests<T extends Prisma.TestFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestFindManyArgs>
   ): Promise<Test[]> {
     return this.prisma.test.findMany(args);
   }
-  async findOne<T extends Prisma.TestFindUniqueArgs>(
+  async test<T extends Prisma.TestFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestFindUniqueArgs>
   ): Promise<Test | null> {
     return this.prisma.test.findUnique(args);
   }
-  async create<T extends Prisma.TestCreateArgs>(
+  async createTest<T extends Prisma.TestCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestCreateArgs>
   ): Promise<Test> {
     return this.prisma.test.create<T>({
@@ -48,7 +48,7 @@ export class TestServiceBase {
       },
     });
   }
-  async update<T extends Prisma.TestUpdateArgs>(
+  async updateTest<T extends Prisma.TestUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestUpdateArgs>
   ): Promise<Test> {
     return this.prisma.test.update<T>({
@@ -66,7 +66,7 @@ export class TestServiceBase {
       },
     });
   }
-  async delete<T extends Prisma.TestDeleteArgs>(
+  async deleteTest<T extends Prisma.TestDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestDeleteArgs>
   ): Promise<Test> {
     return this.prisma.test.delete(args);

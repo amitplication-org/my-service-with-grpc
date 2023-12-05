@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Order, Customer, Product } from "@prisma/client";
+
+import {
+  Prisma,
+  Order, // @ts-ignore
+  Customer, // @ts-ignore
+  Product,
+} from "@prisma/client";
 
 export class OrderServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,27 +27,27 @@ export class OrderServiceBase {
     return this.prisma.order.count(args);
   }
 
-  async findMany<T extends Prisma.OrderFindManyArgs>(
+  async orders<T extends Prisma.OrderFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.OrderFindManyArgs>
   ): Promise<Order[]> {
     return this.prisma.order.findMany(args);
   }
-  async findOne<T extends Prisma.OrderFindUniqueArgs>(
+  async order<T extends Prisma.OrderFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.OrderFindUniqueArgs>
   ): Promise<Order | null> {
     return this.prisma.order.findUnique(args);
   }
-  async create<T extends Prisma.OrderCreateArgs>(
+  async createOrder<T extends Prisma.OrderCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.OrderCreateArgs>
   ): Promise<Order> {
     return this.prisma.order.create<T>(args);
   }
-  async update<T extends Prisma.OrderUpdateArgs>(
+  async updateOrder<T extends Prisma.OrderUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.OrderUpdateArgs>
   ): Promise<Order> {
     return this.prisma.order.update<T>(args);
   }
-  async delete<T extends Prisma.OrderDeleteArgs>(
+  async deleteOrder<T extends Prisma.OrderDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.OrderDeleteArgs>
   ): Promise<Order> {
     return this.prisma.order.delete(args);
