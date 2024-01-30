@@ -33,7 +33,9 @@ export class AddressGrpcControllerBase {
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Address })
   @GrpcMethod("AddressService", "create")
-  async create(@common.Body() data: AddressCreateInput): Promise<Address> {
+  async createAddress(
+    @common.Body() data: AddressCreateInput
+  ): Promise<Address> {
     return await this.service.create({
       data: data,
       select: {
@@ -54,7 +56,7 @@ export class AddressGrpcControllerBase {
   @swagger.ApiOkResponse({ type: [Address] })
   @ApiNestedQuery(AddressFindManyArgs)
   @GrpcMethod("AddressService", "findMany")
-  async findMany(@common.Req() request: Request): Promise<Address[]> {
+  async addresses(@common.Req() request: Request): Promise<Address[]> {
     const args = plainToClass(AddressFindManyArgs, request.query);
     return this.service.findMany({
       ...args,
@@ -76,7 +78,7 @@ export class AddressGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Address })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("AddressService", "findOne")
-  async findOne(
+  async address(
     @common.Param() params: AddressWhereUniqueInput
   ): Promise<Address | null> {
     const result = await this.service.findOne({
@@ -105,7 +107,7 @@ export class AddressGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Address })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("AddressService", "update")
-  async update(
+  async updateAddress(
     @common.Param() params: AddressWhereUniqueInput,
     @common.Body() data: AddressUpdateInput
   ): Promise<Address | null> {
@@ -139,7 +141,7 @@ export class AddressGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Address })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("AddressService", "delete")
-  async delete(
+  async deleteAddress(
     @common.Param() params: AddressWhereUniqueInput
   ): Promise<Address | null> {
     try {

@@ -30,7 +30,7 @@ export class TestGrpcControllerBase {
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Test })
   @GrpcMethod("TestService", "create")
-  async create(@common.Body() data: TestCreateInput): Promise<Test> {
+  async createTest(@common.Body() data: TestCreateInput): Promise<Test> {
     return await this.service.create({
       data: data,
       select: {
@@ -46,7 +46,7 @@ export class TestGrpcControllerBase {
   @swagger.ApiOkResponse({ type: [Test] })
   @ApiNestedQuery(TestFindManyArgs)
   @GrpcMethod("TestService", "findMany")
-  async findMany(@common.Req() request: Request): Promise<Test[]> {
+  async tests(@common.Req() request: Request): Promise<Test[]> {
     const args = plainToClass(TestFindManyArgs, request.query);
     return this.service.findMany({
       ...args,
@@ -63,7 +63,7 @@ export class TestGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Test })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("TestService", "findOne")
-  async findOne(
+  async test(
     @common.Param() params: TestWhereUniqueInput
   ): Promise<Test | null> {
     const result = await this.service.findOne({
@@ -87,7 +87,7 @@ export class TestGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Test })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("TestService", "update")
-  async update(
+  async updateTest(
     @common.Param() params: TestWhereUniqueInput,
     @common.Body() data: TestUpdateInput
   ): Promise<Test | null> {
@@ -116,7 +116,7 @@ export class TestGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Test })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("TestService", "delete")
-  async delete(
+  async deleteTest(
     @common.Param() params: TestWhereUniqueInput
   ): Promise<Test | null> {
     try {

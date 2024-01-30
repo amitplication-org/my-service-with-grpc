@@ -33,7 +33,9 @@ export class ProductGrpcControllerBase {
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Product })
   @GrpcMethod("ProductService", "create")
-  async create(@common.Body() data: ProductCreateInput): Promise<Product> {
+  async createProduct(
+    @common.Body() data: ProductCreateInput
+  ): Promise<Product> {
     return await this.service.create({
       data: data,
       select: {
@@ -51,7 +53,7 @@ export class ProductGrpcControllerBase {
   @swagger.ApiOkResponse({ type: [Product] })
   @ApiNestedQuery(ProductFindManyArgs)
   @GrpcMethod("ProductService", "findMany")
-  async findMany(@common.Req() request: Request): Promise<Product[]> {
+  async products(@common.Req() request: Request): Promise<Product[]> {
     const args = plainToClass(ProductFindManyArgs, request.query);
     return this.service.findMany({
       ...args,
@@ -70,7 +72,7 @@ export class ProductGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Product })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("ProductService", "findOne")
-  async findOne(
+  async product(
     @common.Param() params: ProductWhereUniqueInput
   ): Promise<Product | null> {
     const result = await this.service.findOne({
@@ -96,7 +98,7 @@ export class ProductGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Product })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("ProductService", "update")
-  async update(
+  async updateProduct(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() data: ProductUpdateInput
   ): Promise<Product | null> {
@@ -127,7 +129,7 @@ export class ProductGrpcControllerBase {
   @swagger.ApiOkResponse({ type: Product })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @GrpcMethod("ProductService", "delete")
-  async delete(
+  async deleteProduct(
     @common.Param() params: ProductWhereUniqueInput
   ): Promise<Product | null> {
     try {
