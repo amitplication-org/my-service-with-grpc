@@ -7,17 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  createdAt DateTime @default(now())
-  firstName String?
-  id        String   @id @default(cuid())
-  lastName  String?
-  password  String
-  roles     Json
-  updatedAt DateTime @updatedAt
-  username  String   @unique
-}
-
 model Order {
   createdAt  DateTime  @default(now())
   customer   Customer? @relation(fields: [customerId], references: [id])
@@ -52,6 +41,7 @@ model Address {
   customers Customer[]
   id        String     @id @default(cuid())
   state     String?
+  test      String?
   updatedAt DateTime   @updatedAt
   zip       Int?
 }
@@ -64,4 +54,24 @@ model Product {
   name        String?
   orders      Order[]
   updatedAt   DateTime @updatedAt
+}
+
+model User {
+  amit      String?
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Test {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  passward  String?
+  updatedAt DateTime @updatedAt
+  username  String?  @unique
 }

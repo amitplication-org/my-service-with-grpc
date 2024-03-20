@@ -16,7 +16,9 @@
     "docker:dev": "docker-compose -f docker-compose.dev.yml up -d",
     "package:container": "docker build .",
     "compose:up": "docker-compose up -d",
-    "compose:down": "docker-compose down --volumes"
+    "compose:down": "docker-compose down --volumes",
+    "lint": "eslint './src/**/*.{ts, tsx}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts, tsx}'"
   },
   "dependencies": {
     "@apollo/server": "^4.9.4",
@@ -62,12 +64,15 @@
     "@types/passport-jwt": "3.0.10",
     "@types/supertest": "^2.0.14",
     "@types/validator": "^13.11.2",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.0.0",
     "jest": "^29.7.0",
     "jest-mock-extended": "^3.0.5",
     "prisma": "^5.4.2",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.2.2"
+    "typescript": "~5.3.0"
   },
   "jest": {
     "preset": "ts-jest",
